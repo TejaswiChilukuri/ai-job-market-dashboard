@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2026-06-16",
+    "jobCount": 31,
+    "skills": [
+      {"name": "AI/ML", "count": 18},
+      {"name": "PHP", "count": 13},
+      {"name": "REST APIs", "count": 13},
+      {"name": "AWS", "count": 12},
+      {"name": "Automation", "count": 10},
+      {"name": "Kubernetes", "count": 8}
+    ],
+    "insights": [
+      "AI/ML integration is now foundational across all senior engineering roles.",
+      "Full-stack and cloud fluency remains paramount with strong AWS and REST API demand.",
+      "Leadership roles now require deep technical depth in APIs and AI/ML."
+    ],
+    "post": "AI/ML expertise is now foundational. Senior engineers must integrate it across their work.\n\nThis week: 31 global remote jobs analyzed. Top skills: AI/ML, REST APIs, AWS, Automation.\n\n#AIAutomation #SoftwareEngineering #WomenInTech #MakeAutomation #OpenToWork"
+  }
+]
