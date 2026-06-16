@@ -1,61 +1,20 @@
-[{"date":"2026-06-16","jobCount":31,"skills":[{"name":"AI/ML","count":18},{"name":"REST","count":13}],"insights":["As a senior tech career advisor, I've analyzed this week's job listings to provide you with a strategic overview. Here's what senior software engineers should prioritize:
-
----
-
-### 1. TOP 5 SKILLS IN DEMAND (with count)
-
-1.  **AI/ML (17)**: Pervasive across transformation, data science, product, and QA roles, indicating a fundamental shift in technical requirements.
-2.  **PHP (13)**: A strong showing, often paired with Laravel, emphasizing its continued relevance for robust web backend development.
-3.  **REST (13)**: The foundational skill for building and integrating APIs, essential for any networked application.
-4.  **AWS (12)**: Cloud platform expertise is critical for modern infrastructure, scalability, and deployment.
-5.  **React (12)**: Dominant for modern frontend development, enabling interactive and responsive user interfaces.
-
----
-
-### 2. THREE KEY INSIGHTS a senior software engineer should know this week
-
-1.  **AI/ML Integration is Table Stakes:** Beyond specialist roles, a foundational understanding of AI/ML concepts, its application, and integration into products is becoming a core competency for all senior engineers, influencing strategic decision-making and product roadmaps.
-2.  **Versatile Full-Stack Proficiency with Cloud Acumen:** There's a high demand for engineers who can navigate both frontend (React, Typescript) and backend (PHP, Laravel, REST APIs) development, coupled with robust cloud infrastructure knowledge (AWS). This signifies a need for generalists who can own end-to-end feature delivery.
-3.  **Leadership Extends Beyond Code:** Senior engineering roles heavily emphasize \\"people management,\\" \\"engineering management,\\" \\"prototyping,\\" and \\"documentation\\" (all with 10+ mentions). This highlights that strong technical leadership, mentorship, and a deep understanding of the entire product lifecycle are crucial for advancement.
-
----
-
-### 3. ONE surprising trend you noticed
-
-The surprising trend is the **persistent and significant demand for PHP expertise (13 mentions), often in conjunction with Laravel**, especially within numerous Staff Product Engineer roles. This challenges the common narrative that PHP is a \\"legacy\\" language, demonstrating its enduring role as a reliable, scalable, and preferred backend technology for many established product companies and startups.
-
----
-
-### 4. A POST READY summary in 3 lines suitable for LinkedIn
-
-AI/ML, PHP/React, and Cloud (AWS) are top tech skills in demand. Senior engineers need full-stack versatility & strong product/people leadership to thrive. Notably, PHP's robust presence challenges 'legacy' narratives, proving its enduring value."],"post":"As a senior tech career advisor, I've analyzed this week's job listings to provide you with a strategic overview. Here's what senior software engineers should prioritize:
-
----
-
-### 1. TOP 5 SKILLS IN DEMAND (with count)
-
-1.  **AI/ML (17)**: Pervasive across transformation, data science, product, and QA roles, indicating a fundamental shift in technical requirements.
-2.  **PHP (13)**: A strong showing, often paired with Laravel, emphasizing its continued relevance for robust web backend development.
-3.  **REST (13)**: The foundational skill for building and integrating APIs, essential for any networked application.
-4.  **AWS (12)**: Cloud platform expertise is critical for modern infrastructure, scalability, and deployment.
-5.  **React (12)**: Dominant for modern frontend development, enabling interactive and responsive user interfaces.
-
----
-
-### 2. THREE KEY INSIGHTS a senior software engineer should know this week
-
-1.  **AI/ML Integration is Table Stakes:** Beyond specialist roles, a foundational understanding of AI/ML concepts, its application, and integration into products is becoming a core competency for all senior engineers, influencing strategic decision-making and product roadmaps.
-2.  **Versatile Full-Stack Proficiency with Cloud Acumen:** There's a high demand for engineers who can navigate both frontend (React, Typescript) and backend (PHP, Laravel, REST APIs) development, coupled with robust cloud infrastructure knowledge (AWS). This signifies a need for generalists who can own end-to-end feature delivery.
-3.  **Leadership Extends Beyond Code:** Senior engineering roles heavily emphasize \\"people management,\\" \\"engineering management,\\" \\"prototyping,\\" and \\"documentation\\" (all with 10+ mentions). This highlights that strong technical leadership, mentorship, and a deep understanding of the entire product lifecycle are crucial for advancement.
-
----
-
-### 3. ONE surprising trend you noticed
-
-The surprising trend is the **persistent and significant demand for PHP expertise (13 mentions), often in conjunction with Laravel**, especially within numerous Staff Product Engineer roles. This challenges the common narrative that PHP is a \\"legacy\\" language, demonstrating its enduring role as a reliable, scalable, and preferred backend technology for many established product companies and startups.
-
----
-
-### 4. A POST READY summary in 3 lines suitable for LinkedIn
-
-AI/ML, PHP/React, and Cloud (AWS) are top tech skills in demand. Senior engineers need full-stack versatility & strong product/people leadership to thrive. Notably, PHP's robust presence challenges 'legacy' narratives, proving its enduring value."}]
+[
+  {
+    "date": "2026-06-16",
+    "jobCount": 31,
+    "skills": [
+      {"name": "AI/ML", "count": 17},
+      {"name": "PHP", "count": 13},
+      {"name": "REST", "count": 13},
+      {"name": "AWS", "count": 12},
+      {"name": "React", "count": 12},
+      {"name": "Automation", "count": 10}
+    ],
+    "insights": [
+      "AI/ML integration is now table stakes — foundational for all senior engineering roles, not just specialist positions.",
+      "Full-stack proficiency with cloud acumen is in high demand — React, PHP, Laravel, REST APIs combined with AWS.",
+      "Leadership extends beyond code — people management and documentation skills mentioned 10+ times this week."
+    ],
+    "post": "AI/ML, PHP/React, and Cloud (AWS) are the top tech skills in demand this week.\n\nSenior engineers need full-stack versatility and strong product leadership to thrive.\n\nSurprisingly, PHP's robust presence challenges legacy narratives — proving its enduring value.\n\n#AIAutomation #SoftwareEngineering #WomenInTech #MakeAutomation #OpenToWork"
+  }
+]
