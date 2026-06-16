@@ -41,7 +41,6 @@
   .post-box { background: #12121a; border: 1px solid #2a2a3a; border-radius: 8px; padding: 16px; margin-top: 12px; font-size: 13px; color: #bbb; line-height: 1.8; }
   .copy-btn { margin-top: 10px; font-size: 12px; padding: 6px 14px; border-radius: 8px; background: #7c6ff7; border: none; color: #fff; cursor: pointer; }
   .copy-btn:hover { background: #6c5fe7; }
-  .trend-pill { display: inline-block; font-size: 11px; background: #2a1f10; color: #f0a830; border: 1px solid #3a2f20; padding: 3px 8px; border-radius: 6px; margin-top: 8px; }
   .empty { text-align: center; padding: 60px 20px; color: #444; font-size: 14px; }
   .updated { font-size: 11px; color: #444; text-align: right; margin-top: 24px; }
 </style>
@@ -115,6 +114,10 @@
 <script>
 let skillChartInstance = null;
 
+function cleanText(t) {
+  return (t || '').replace(/\*\*/g, '').replace(/###/g, '').replace(/^\s*[\d\.\-\*]+\s*/,'').trim();
+}
+
 async function loadData() {
   try {
     const res = await fetch('data.json?t=' + Date.now());
@@ -122,28 +125,32 @@ async function loadData() {
     if (!rows || rows.length === 0) return;
 
     const latest = rows[rows.length - 1];
+    const rawText = Array.isArray(latest.insights) ? latest.insights[0] : (latest.post || '');
 
     document.getElementById('heroSub').textContent =
       'Week of ' + latest.date + ' · ' + (latest.jobCount || 31) + ' jobs analyzed · Powered by Gemini AI';
-
     document.getElementById('m-jobs').textContent = latest.jobCount || 31;
     document.getElementById('m-weeks').textContent = rows.length;
     document.getElementById('updatedAt').textContent = 'Last updated: ' + latest.date;
 
-    renderSkills(latest.skills || []);
-    renderInsights(latest.insights || []);
-    renderPost(latest.post || '');
+    const skills = latest.skills || [];
+    document.getElementById('m-skill').textContent = skills[0]?.name || '—';
+    document.getElementById('m-skill-sub').textContent = (skills[0]?.count || '—') + ' mentions this week';
+
+    renderSkills(skills);
+    renderInsightsFromText(rawText);
+    renderPost(latest.post || rawText);
     renderHistory(rows);
 
   } catch(e) {
     document.getElementById('heroSub').textContent = 'Waiting for first Make.com run...';
+    console.error(e);
   }
 }
 
 function renderSkills(skills) {
-  const max = skills[0]?.count || 1;
-  document.getElementById('m-skill').textContent = skills[0]?.name || '—';
-  document.getElementById('m-skill-sub').textContent = (skills[0]?.count || '—') + ' mentions this week';
+  if (!skills.length) return;
+  const max = skills[0].count || 1;
 
   document.getElementById('skillBars').innerHTML = skills.slice(0,6).map(s => `
     <div class="skill-row">
@@ -157,12 +164,16 @@ function renderSkills(skills) {
     type: 'bar',
     data: {
       labels: skills.slice(0,6).map(s => s.name),
-      datasets: [{ data: skills.slice(0,6).map(s => s.count),
+      datasets: [{
+        data: skills.slice(0,6).map(s => s.count),
         backgroundColor: ['#7c6ff7','#8b7ff7','#9a8ff7','#a99ff7','#b8aff8','#c7bff8'],
-        borderRadius: 4, borderSkipped: false }]
+        borderRadius: 4,
+        borderSkipped: false
+      }]
     },
     options: {
-      responsive: true, maintainAspectRatio: false,
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
         x: { grid: { display: false }, ticks: { color: '#666', font: { size: 11 } } },
@@ -172,31 +183,44 @@ function renderSkills(skills) {
   });
 }
 
-function renderInsights(insights) {
-  document.getElementById('insightsList').innerHTML = insights.map((ins, i) => `
+function renderInsightsFromText(text) {
+  if (!text) return;
+  const lines = text.split('\n')
+    .map(l => l.trim())
+    .filter(l => l.length > 40 && !l.startsWith('#') && !l.startsWith('---'))
+    .slice(0, 3);
+
+  document.getElementById('insightsList').innerHTML = lines.map((ins, i) => `
     <div class="insight">
       <div class="insight-num">0${i+1}</div>
-      <div class="insight-text">${ins}</div>
-    </div>`).join('');
+      <div class="insight-text">${cleanText(ins)}</div>
+    </div>`).join('') || '<div class="insight"><div class="insight-text">Insights loading...</div></div>';
 }
 
 function renderPost(post) {
-  document.getElementById('postBox').innerHTML = post.replace(/\n/g, '<br>');
+  if (!post) return;
+  const lines = post.split('\n')
+    .map(l => l.trim())
+    .filter(l => l.length > 10)
+    .slice(-6)
+    .join('<br>');
+  document.getElementById('postBox').innerHTML = lines.replace(/\*\*/g, '').replace(/###/g, '');
 }
 
 function renderHistory(rows) {
-  if (rows.length === 0) return;
+  if (!rows.length) return;
   const reversed = [...rows].reverse();
   document.getElementById('historyWrap').innerHTML = `
     <table class="history-table">
       <thead><tr>
-        <th>Week</th><th>Top Skills</th><th>Key Insight</th><th>Jobs</th>
+        <th>Week</th>
+        <th>Top Skills</th>
+        <th>Jobs</th>
       </tr></thead>
       <tbody>${reversed.map(r => `
         <tr>
           <td><span class="week-badge">${r.date}</span></td>
-          <td>${(r.skills||[]).slice(0,3).map(s=>`${s.name} (${s.count})`).join(', ')}</td>
-          <td>${(r.insights||[])[0] || '—'}</td>
+          <td>${(r.skills||[]).slice(0,3).map(s => s.name + ' (' + s.count + ')').join(', ') || '—'}</td>
           <td>${r.jobCount || 31}</td>
         </tr>`).join('')}
       </tbody>
